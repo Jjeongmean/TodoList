@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>TodoList</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css">
+    <link rel="stylesheet" th:href="@{/css/toastr.min.css}">
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+
+    <!-- 각 페이지의 CSS가 작성될 위치 -->
+    <th:block layout:fragment="css"></th:block>
+
+</head>
+<body>
+<div class="site-wrap">
+    <div th:replace="fragments/header::header"></div>
+    <div layout:fragment="content" class="content"></div>
+    <div th:replace="fragments/footer::footer"></div>
+</div>
+
+<script th:src="@{/js/index.js}"></script>
+<script th:src="@{/js/toastr.min.js.js}"></script>
+
+<!-- 각 페이지의 스크립트가 작성될 위치 -->
+<th:block layout:fragment="script"></th:block>
+</body>
+</html>
