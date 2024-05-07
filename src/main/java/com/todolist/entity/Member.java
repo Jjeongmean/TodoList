@@ -40,7 +40,7 @@ public class Member {
 
         member.setName(memberFormDto.getName());
         member.setEmail(memberFormDto.getEmail());
-        member.setPassword(memberFormDto.getPassword());
+        member.setPassword(password);
 
         return member;
     }

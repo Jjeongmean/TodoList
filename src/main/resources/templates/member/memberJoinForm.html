@@ -283,39 +283,49 @@ button {
 }
     </style>
 </th:block>
+<head>
+    <script src="/webjars/jquery/3.3.1-2/jquery.min.js"></script>
+    <link href="/webjars/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/webjars/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/toastr.min.css" rel="stylesheet">
+    <script src="/js/toastr.min.js"></script>
+</head>
 <div layout:fragment="content">
         <section class="container">
             <h2 class="h3 mb-3 text-black">회원가입</h2>
             <form role="form" action="/members/new" method="post" th:object="${memberFormDto}">
                 <div class="form-group row">
-                    <div class="col-md-12">
+                    <div class="mb-3">
                         <label th:for="name"><b>이름</b></label>
                         <input type="text" class="form-control" placeholder="이름을 입력하세요" th:field="*{name}" required>
                         <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="fieldError">Incorrect Data</p>
-
+                    </div>
+                    <div class="mb-3">
                         <label th:for="email" class="text-black"><b>이메일</b></label>
                         <input type="text" class="form-control" placeholder="이메일을 입력하세요" th:field="*{email}" required>
                         <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="fieldError">Incorrect Data</p>
-
+                    </div>
+                    <div class="mb-3">
                         <label th:for="password" class="text-black"><b>비밀번호</b></label>
                         <input type="password" class="form-control" placeholder="비밀번호를 입력하세요" th:field="*{password}" required>
                         <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="fieldError">Incorrect Data</p>
-
-                <div style="background-color:#f1f1f1">
-                    <button type="button" class="custom-btn btn-11" onclick="location.href='/'">가입하기</button>
-                </div>
+                    </div>
+                    <div class="col-12" style="background-color:#f1f1f1">
+                        <button type="submit" class="custom-btn btn-11" >가입하기</button>
                     </div>
                 </div>
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
             </form>
         </section>
 </div>
 
 <th:block layout:fragment="script">
     <script th:inline="javascript">
-                //회원가입을 실패했을떄 에러메세지 보여줌
-                var errorMessage  = [[${errorMessage}]]
+        //회원가입을 실패했을떄 에러메세지 보여줌
+        var errorMessage  = [[${errorMessage}]]
 
-                if(errorMessage != null) alert(errorMessage);
+        if(errorMessage != null) alert(errorMessage);
 
 
         $(".user").focusin(function(){
