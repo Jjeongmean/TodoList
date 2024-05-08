@@ -1,7 +1,17 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout1}">
+<th:block layout:fragment="css">
+</th:block>
+
+<!--<head>: HTML 문서의 메타데이터를 포함하는 영역 -->
+<!--<meta> 태그 필수-->
+<head>
+    <meta name="_csrf" th:content="${_csrf.token}" />
+    <meta name="_csrf_header" th:content="${_csrf.headerName}" />
+</head>
 <div layout:fragment="content">
-    <!-- 모달 : TO-DO 추가하기 -->
     <div class="modal" id="myModal">
         <div class="modal-dialog">
             <div class="modal-content">

@@ -1,14 +1,12 @@
 package com.todolist.entity;
 
+import com.todolist.dto.TodoFormDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "todolist")
@@ -32,7 +30,6 @@ public class TodoList {
 
     private boolean complete; //완료
 
-
     private String status; //진행상태(여부) yes or no
 
     //할일에 해당하는 회원
@@ -41,4 +38,9 @@ public class TodoList {
     private Member member;
 
 
+    public void updateTodoList(TodoFormDto todoFormDto) {
+        this.content = todoFormDto.getContent();
+        this.title = todoFormDto.getTitle();
+        this.deadline = todoFormDto.getDeadline();
+    }
 }

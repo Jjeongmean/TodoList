@@ -235,8 +235,11 @@ button {
                 display: flex;
                }
 
-               body {font-family: SUITE-Regular;}
-               form {border: 3px solid #f1f1f1;}
+               body {
+               font-family: SUITE-Regular;
+
+               }
+
 
                input[type=text], input[type=password] {
                  width: 100%;
