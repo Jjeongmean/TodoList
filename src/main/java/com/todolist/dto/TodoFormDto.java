@@ -15,10 +15,7 @@ import java.time.format.DateTimeFormatter;
 public class TodoFormDto {
 
     private Long id;
-
-    @NotBlank(message = "제목을 입력해주세요")
     private String title;
-    @NotBlank(message = "내용을 입력해주세요")
     private String content;
 
     private String createDate;
@@ -36,6 +33,7 @@ public class TodoFormDto {
     }
 
     public static TodoFormDto of (TodoList todoList) {
+
         return modelMapper.map(todoList, TodoFormDto.class);
     }
 }

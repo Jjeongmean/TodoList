@@ -22,11 +22,16 @@ public class QTodoList extends EntityPathBase<TodoList> {
 
     public static final QTodoList todoList = new QTodoList("todoList");
 
+    public final QBaseEntity _super = new QBaseEntity(this);
+
     public final BooleanPath complete = createBoolean("complete");
 
     public final StringPath content = createString("content");
 
     public final DateTimePath<java.time.LocalDateTime> createDate = createDateTime("createDate", java.time.LocalDateTime.class);
+
+    //inherited
+    public final StringPath createdBy = _super.createdBy;
 
     public final DateTimePath<java.time.LocalDateTime> deadline = createDateTime("deadline", java.time.LocalDateTime.class);
 
@@ -34,9 +39,18 @@ public class QTodoList extends EntityPathBase<TodoList> {
 
     public final QMember member;
 
+    //inherited
+    public final StringPath modifiedBy = _super.modifiedBy;
+
+    //inherited
+    public final DateTimePath<java.time.LocalDateTime> regTime = _super.regTime;
+
     public final StringPath status = createString("status");
 
     public final StringPath title = createString("title");
+
+    //inherited
+    public final DateTimePath<java.time.LocalDateTime> updateTime = _super.updateTime;
 
     public QTodoList(String variable) {
         this(TodoList.class, forVariable(variable), INITS);

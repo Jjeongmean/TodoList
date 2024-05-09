@@ -13,6 +13,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import static com.todolist.entity.QMember.member;
+
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -23,18 +25,19 @@ public class TodoService {
     //등록하기
     public Long saveTodoList(TodoFormDto todoFormDto, String email) throws Exception {
         // TodoListFormDto를 TodoList 엔티티로 변환
-        TodoList todoList  = todoFormDto.createTodoList();
+        TodoList todoList = todoFormDto.createTodoList();
         Member member = memberRepository.findByEmail(email);
-        todoList.setMember(member);
+
 
         // todoListRepository를 사용하여 엔티티 저장
         todoListRepository.save(todoList);
-        return todoList.getId();
+        return todoList.getId(); //등록한 id를 리턴
     }
 
     //불러오기
     @Transactional(readOnly = true)
     public TodoFormDto getTodoListDtl(Long todoListId) {
+        // todolist 테이블에 있는 데이터 가져옴.
         TodoList todoList = todoListRepository.findById(todoListId).orElseThrow(EntityNotFoundException::new);
         TodoFormDto todoFormDto = TodoFormDto.of(todoList);
 
@@ -54,7 +57,7 @@ public class TodoService {
 
     //가져오기
     @Transactional(readOnly = true)
-    public Page<TodoList> getListPage(TodoSearchDto todoSearchDto, Pageable pageable){
+    public Page<TodoList> getListPage(TodoSearchDto todoSearchDto, Pageable pageable) {
         Page<TodoList> todoListPage = todoListRepository.getTodoListPage(todoSearchDto, pageable);
         return todoListPage;
     }
@@ -73,6 +76,8 @@ public class TodoService {
         TodoList todoList = todoListRepository.findById(todoListId)
                 .orElseThrow(EntityNotFoundException::new);
 
-        todoListRepository.delete(todoList);
+        todoListRepository.delete(todoList); //delete
     }
+
 }
+

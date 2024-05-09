@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @ToString
-public class TodoList {
+public class TodoList extends BaseEntity{
     @Id
     @Column(name = "todolist_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
