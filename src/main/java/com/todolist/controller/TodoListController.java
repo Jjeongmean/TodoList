@@ -30,7 +30,7 @@ public class TodoListController {
     //등록 페이지
     @GetMapping(value = "/write")
     public String todoForm(Model model) {
-        model.addAttribute("todoFormDto",new TodoFormDto());
+        model.addAttribute("todoFormDto", new TodoFormDto());
         return "todolist/write";
     }
 
@@ -38,7 +38,10 @@ public class TodoListController {
     @PostMapping("/write")
     public String todoNew(@Valid TodoFormDto todoFormDto, BindingResult bindingResult, Model model, Principal principal) {
 
-        if (bindingResult.hasErrors()) return "todolist/list";
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("todoSearchDto", new TodoSearchDto());
+            return "todolist/list";
+        }
 
         try{
             todoService.saveTodoList(todoFormDto, principal.getName());
@@ -46,6 +49,7 @@ public class TodoListController {
             e.printStackTrace();
             model.addAttribute("errorMessage",
                     "등록 중 에러가 발생했습니다.");
+            model.addAttribute("todoSearchDto", new TodoSearchDto());
             return "todolist/list";
         }
         return "redirect:/";
@@ -70,6 +74,7 @@ public class TodoListController {
 
 
     //게시물 상세 페이지
+    @GetMapping("/detail/{todoListId}")
     public String todoDtl(Model model, @PathVariable("todoListId") Long todoListId){
         TodoFormDto todoList = todoService.getTodoListDtl(todoListId);
         model.addAttribute("todoList", todoList);
@@ -77,7 +82,7 @@ public class TodoListController {
     }
 
     // 수정 페이지 띄우기
-    @GetMapping("/detail/{todoListId}")
+    @GetMapping("/rewrite/{todoListId}")
     public String todoRewrite(Model model,
                               @PathVariable("todoListId") Long todoListId) {
 
@@ -87,7 +92,7 @@ public class TodoListController {
 
         } catch (Exception e) {
             e.printStackTrace();
-            model.addAttribute("todoListFormDto", new TodoFormDto());
+            model.addAttribute("todoFormDto", new TodoFormDto());
             return "todolist/rewrite";
         }
 

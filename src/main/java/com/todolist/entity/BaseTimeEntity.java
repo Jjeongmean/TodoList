@@ -5,6 +5,7 @@ import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -19,8 +20,10 @@ public abstract class BaseTimeEntity {
 
     @CreatedDate //게시물을 최초로 등록한 날짜를 저장 및 감지. 엔티티가 생성되서 저장될때 시간을 자동으로 저장한다
     @Column(updatable = false) //해당 컬럼에 대한 값은 업데이트 X. 컬럼의 값을 수정하지 못하게 막음
+    @CreationTimestamp
     private LocalDateTime regTime; //등록일
 
     @LastModifiedDate //게시물을 수정한 날짜를 저장 및 감지(수정될때 시간을 자동으로 저장한다)
+    @CreationTimestamp
     private LocalDateTime updateTime; //수정일
 }

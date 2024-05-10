@@ -24,10 +24,11 @@ public class TodoService {
 
     //등록하기
     public Long saveTodoList(TodoFormDto todoFormDto, String email) throws Exception {
-        // TodoListFormDto를 TodoList 엔티티로 변환
-        TodoList todoList = todoFormDto.createTodoList();
+        // TodoFormDto를 TodoList 엔티티로 변환
+        TodoList todoList = todoFormDto.createTodoList(todoFormDto);
         Member member = memberRepository.findByEmail(email);
 
+        todoList.setMember(member);
 
         // todoListRepository를 사용하여 엔티티 저장
         todoListRepository.save(todoList);

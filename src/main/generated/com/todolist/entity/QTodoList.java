@@ -28,8 +28,6 @@ public class QTodoList extends EntityPathBase<TodoList> {
 
     public final StringPath content = createString("content");
 
-    public final DateTimePath<java.time.LocalDateTime> createDate = createDateTime("createDate", java.time.LocalDateTime.class);
-
     //inherited
     public final StringPath createdBy = _super.createdBy;
 
@@ -45,7 +43,7 @@ public class QTodoList extends EntityPathBase<TodoList> {
     //inherited
     public final DateTimePath<java.time.LocalDateTime> regTime = _super.regTime;
 
-    public final StringPath status = createString("status");
+    public final EnumPath<com.todolist.constant.Status> status = createEnum("status", com.todolist.constant.Status.class);
 
     public final StringPath title = createString("title");
 

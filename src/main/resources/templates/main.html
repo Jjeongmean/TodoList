@@ -13,37 +13,6 @@
 </head>
 
 <div layout:fragment="content" class="content">
-<!--    <div class="container">-->
-<!--            <div class="row my-4">-->
-<!--                <div class="col-3">-->
-<!--                    <label for="nom">ENTER</label>-->
-<!--                    <input type="text" id="nom">-->
-<!--                </div>-->
-<!--                <div class="col-4">-->
-<!--                    <label for="date">Date</label>-->
-<!--                    <input type="date" id="date">-->
-<!--                </div>-->
-<!--                <div class="col-3">-->
-<!--                    <button id="envoi" >리스트추가</button>-->
-<!--                </div>-->
-<!--                <div class="col-2">-->
-<!--                    <button id="toggler" class="btn btn-primary" onclick="archivesButton()">보관하기</button>-->
-<!--                </div>-->
-<!--            </div>-->
-
-<!--            <h4 id="title"></h4>-->
-
-<!--            <div class="row bg-dark text-light">-->
-<!--                <div class="col-1">여부</div>-->
-<!--                <div class="col-4">TITLE</div>-->
-<!--                <div class="col-3">등록일</div>-->
-<!--                <div class="col-2">CHECK</div>-->
-<!--                <div class="col-2">보관</div>-->
-<!--            </div>-->
-<!--        <div id="cible" class="container">-->
-<!--        </div>-->
-<!--        </div>-->
-
     <div class="container">
         <div>
             <a href="/members/login" sec:authorize="isAnonymous()">로그인</a>
@@ -67,7 +36,7 @@
                        size="30"
                        required
                        >
-                <button class="button" type="submit" onclick="location.href='/add/new'"><span>Submit</span></button>
+                <button class="button" type="submit" onclick="location.href='/list'"><span>Submit</span></button>
             </div>
         </form>
         <div>
@@ -84,10 +53,10 @@
 <!--        <a href="#" class="next" onclick="next();">다음 &raquo;</a>-->
 <!--        </div>-->
 </div>
+</div>
 
 <th:block layout:fragment="script">
     <script th:inline="javascript">
     </script>
 </th:block>
-</body>
 </html>

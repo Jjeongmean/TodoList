@@ -1,10 +1,12 @@
 package com.todolist.entity;
 
+import com.todolist.constant.Status;
 import com.todolist.dto.TodoFormDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -24,13 +26,13 @@ public class TodoList extends BaseEntity{
 
     private String content; //내용
 
-    private LocalDateTime createDate; //등록일
-
+    //@CreationTimestamp
     private LocalDateTime deadline; //마감기한
 
     private boolean complete; //완료
 
-    private String status; //진행상태(여부) yes or no
+    @Enumerated(EnumType.STRING)
+    private Status status; //우선순위
 
     //할일에 해당하는 회원
     @ManyToOne(fetch = FetchType.LAZY)
@@ -41,6 +43,6 @@ public class TodoList extends BaseEntity{
     public void updateTodoList(TodoFormDto todoFormDto) {
         this.content = todoFormDto.getContent();
         this.title = todoFormDto.getTitle();
-        this.deadline = todoFormDto.getDeadline();
+        //this.deadline = todoFormDto.getDeadline();
     }
 }

@@ -5,46 +5,47 @@
 <th:block layout:fragment="css">
 </th:block>
 
-<!--<head>: HTML 문서의 메타데이터를 포함하는 영역 -->
-<!--<meta> 태그 필수-->
-<head>
-    <meta name="_csrf" th:content="${_csrf.token}" />
-    <meta name="_csrf_header" th:content="${_csrf.headerName}" />
-</head>
+<div layout:fragment="content" class="content">
+<!-- 투두리스트 리스트 -->
+    <div class="container">
+        <div class="row" th:object="${todoSearchDto}">
+            <div class="col">
+                <input type="text" class="form-control" placeholder="검색" th:field="*{searchQuery}">
 
-<div layout:fragment="content" class="content"></div>
+            </div>
+            <div class="col">
+                <label for="date">날짜</label>
+                <input type="date" id="date">
+                <button class="button" type="submit" onclick="location.href='/write'">리스트 추가</button>
+            </div>
+            <div class="col-md-10">
+                <form th:action="@{'/list/' + todoLists.number}" method="get" th:object="${todoLists}">
+                    <table class="table table-responsive-md">
+                        <tbody>
+                        <tr>
+                            <th scope="col">제목</th>
+                            <th scope="col">내용</th>
+                            <th scope="col">기한</th>
+                            <th scope="col">우선순위</th>
+                        </tr>
+                        </tbody>
 
-<div class="container">
-    <div class="row my-4">
-        <div class="col-3">
-            <label for="nom">입력</label>
-            <input type="text" id="nom">
-        </div>
-        <div class="col-4">
-            <label for="date">Date</label>
-            <input type="date" id="date">
-        </div>
-        <div class="col-3">
-            <button id="envoi" >리스트 추가</button>
-        </div>
-        <div class="col-2">
-            <button id="toggler" class="btn btn-primary" onclick="archivesButton()">보관하기</button>
+                        <tr th:each="todoList, status: ${todoLists.getContent()}">
+                            <th th:tex="${todoList.id}" scope="row"></th>
+                            <td>
+                                <a th:href="'/detail/ + ${todoList.id}"
+                                th:text="${}">
+
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+
+            </div>
+
         </div>
     </div>
-
-    <h4 id="title"></h4>
-
-    <div class="row bg-dark text-light">
-        <div class="col-1">진행여부</div>
-        <div class="col-4">제목</div>
-        <div class="col-3">날짜</div>
-        <div class="col-2">완료</div>
-        <div class="col-2">보관</div>
-    </div>
-</div>
-<div id="cible" class="container">
-</div>
-
     <!--페이징-->
     <a href="#" class="previous" onclick="before();">&laquo; 이전</a>
     <span id="now-page"></span>
@@ -52,7 +53,10 @@
     <span id="total-page"></span>
     <a href="#" class="next" onclick="next();">다음 &raquo;</a>
 </div>
-</div>
+
+
+
+
 
 <th:block layout:fragment="script">
     <script th:inline="javascript">
