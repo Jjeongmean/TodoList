@@ -23,21 +23,15 @@
                     <table class="table table-responsive-md">
                         <tbody>
                         <tr>
-                            <th scope="col">제목</th>
-                            <th scope="col">내용</th>
-                            <th scope="col">기한</th>
-                            <th scope="col">우선순위</th>
+                            <th scope="col-4">제목</th>
+                            <th scope="col-3">내용</th>
+                            <th scope="col-3">기한</th>
+                            <th scope="col-2">우선순위</th>
                         </tr>
                         </tbody>
 
                         <tr th:each="todoList, status: ${todoLists.getContent()}">
                             <th th:tex="${todoList.id}" scope="row"></th>
-                            <td>
-                                <a th:href="'/detail/ + ${todoList.id}"
-                                th:text="${}">
-
-                                </a>
-                            </td>
                         </tr>
                     </table>
                 </form>
