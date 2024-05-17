@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       layout:decorate="~{layouts/layout1}">
 <th:block layout:fragment="css">
 </th:block>
@@ -18,20 +17,23 @@
                 <input type="date" id="date">
                 <button class="button" type="submit" onclick="location.href='/write'">리스트 추가</button>
             </div>
-            <div class="col-md-10">
+            <div>
                 <form th:action="@{'/list/' + todoLists.number}" method="get" th:object="${todoLists}">
-                    <table class="table table-responsive-md">
-                        <tbody>
+                    <table>
                         <tr>
                             <th scope="col-4">제목</th>
-                            <th scope="col-3">내용</th>
-                            <th scope="col-3">기한</th>
+                            <th scope="col-3">마감기한</th>
                             <th scope="col-2">우선순위</th>
                         </tr>
-                        </tbody>
 
                         <tr th:each="todoList, status: ${todoLists.getContent()}">
-                            <th th:tex="${todoList.id}" scope="row"></th>
+                            <td>
+                                <a th:href="'/detail/' + ${todoList.id}"
+                                   th:text="${todoList.title}">
+                                </a>
+                            </td>
+                            <td th:text="${todoList.deadline}"></td>
+                            <td th:text="${todoList.status}"></td>
                         </tr>
                     </table>
                 </form>
