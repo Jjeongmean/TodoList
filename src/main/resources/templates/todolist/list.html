@@ -9,7 +9,7 @@
     <div class="container">
         <div class="row" th:object="${todoSearchDto}">
             <div class="col">
-                <input type="text" class="form-control" placeholder="검색" th:field="*{searchQuery}">
+<!--                <input type="text" class="form-control" placeholder="검색" th:field="*{searchQuery}">-->
 
             </div>
             <div class="col">
@@ -17,6 +17,7 @@
                 <input type="date" id="date">
                 <button class="button" type="submit" onclick="location.href='/write'">리스트 추가</button>
             </div>
+            &nbsp;
             <div>
                 <form th:action="@{'/list/' + todoLists.number}" method="get" th:object="${todoLists}">
                     <table>
